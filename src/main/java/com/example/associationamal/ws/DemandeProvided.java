@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
-@RequestMapping("assoxiation-amal/demande/")
+@RequestMapping("association-amal/demande/")
 public class DemandeProvided {
     @PostMapping()
     public int save(@RequestBody Demande demande) {

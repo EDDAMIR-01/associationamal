@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
-@RequestMapping("assoxiation-amal/user/")
+@RequestMapping("association-amal/user/")
 public class UserProvided {
     @GetMapping("login/{login}")
     public User findByLogin(@PathVariable String login) {
