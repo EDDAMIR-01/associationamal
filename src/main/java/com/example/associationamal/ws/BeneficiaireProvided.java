@@ -16,6 +16,9 @@ public class BeneficiaireProvided {
     public int save(@RequestBody Beneficiaire beneficiaire) {
         return beneficierService.save(beneficiaire);
     }
+
+    @PostMapping("create/")
+    public int create(@RequestBody Beneficiaire beneficiaire){ return beneficierService.create(beneficiaire);}
     @GetMapping("cni/{cni}")
     public Beneficiaire findByCni(@PathVariable String cni) {
         return beneficierService.findByCni(cni);

@@ -17,13 +17,12 @@ public class ChambreService {
 
     public int save(Chambre chambre) {
         Etage etage = etageDao.findByRef(chambre.getEtage().getRef());
-        if (findByRef(chambre.getRef()) != null) {
+        if (chambre.getRef() == null) {
             return -1;
         } else if (etage == null) {
             return -2;
         } else {
             chambre.setEtage(etage);
-            chambre.setDisponible(true);
             chambre.setBeneficiaires(null);
             chambreDao.save(chambre);
             return 1;
@@ -41,7 +40,10 @@ public class ChambreService {
             return -1;
         }
     }
-
+    public List<Beneficiaire> listbeneficier(String refchambre) {
+        Chambre chambre = findByRef(refchambre);
+        return chambre.getBeneficiaires();
+        }
     public Chambre findByRef(String ref) {
         return chambreDao.findByRef(ref);
     }

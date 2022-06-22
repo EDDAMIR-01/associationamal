@@ -1,7 +1,9 @@
 package com.example.associationamal.ws;
 
 
+import com.example.associationamal.bean.Beneficiaire;
 import com.example.associationamal.bean.Chambre;
+import com.example.associationamal.service.BeneficierService;
 import com.example.associationamal.service.ChambreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +18,14 @@ public class ChambreProvided {
     public int save(@RequestBody Chambre chambre) {
         return chambreService.save(chambre);
     }
-    @GetMapping("cni/{cni}/refchambre/{refchambre}")
-    public int addbeneficier(@PathVariable String cni, @PathVariable String refchambre) {
-        return chambreService.addbeneficier(cni, refchambre);
+    @PostMapping("refchambre/{refchambre}")
+    public int addbeneficier(@RequestBody Beneficiaire bnf, @PathVariable String refchambre) {
+        beneficierService.create(bnf);
+        return chambreService.addbeneficier(bnf.getCni(), refchambre);
+    }
+    @GetMapping("refchambre/{refchambre}")
+    public List<Beneficiaire> listbeneficier(@PathVariable String refchambre) {
+        return chambreService.listbeneficier(refchambre);
     }
     @GetMapping("ref/{ref}")
     public Chambre findByRef(@PathVariable String ref) {
@@ -36,4 +43,6 @@ public class ChambreProvided {
 
     @Autowired
     private ChambreService chambreService;
+    @Autowired
+    private BeneficierService beneficierService;
 }

@@ -27,7 +27,15 @@ public class BeneficierService {
             return 1;
         }
     }
-
+    public int create(Beneficiaire beneficiaire) {
+        if (findByCni(beneficiaire.getCni()) != null) {
+            return -1;
+        }
+        else {
+            beneficiaireDao.save(beneficiaire);
+            return 1;
+        }
+    }
     public Beneficiaire findByCni(String cni) {
         return beneficiaireDao.findByCni(cni);
     }

@@ -36,6 +36,9 @@ public class Chambre {
     public void setId(Long id) {
         this.id = id;
     }
+    public boolean getDisponible() {
+        return disponible;
+    }
 
     public String getRef() {
         return ref;
