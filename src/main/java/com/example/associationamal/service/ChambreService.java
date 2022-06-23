@@ -17,7 +17,7 @@ public class ChambreService {
 
     public int save(Chambre chambre) {
         Etage etage = etageDao.findByRef(chambre.getEtage().getRef());
-        if (chambre.getRef() == null) {
+        if (findByRef(chambre.getRef()) != null) {
             return -1;
         } else if (etage == null) {
             return -2;

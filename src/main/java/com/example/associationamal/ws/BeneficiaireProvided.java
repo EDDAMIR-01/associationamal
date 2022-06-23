@@ -28,7 +28,7 @@ public class BeneficiaireProvided {
     public int deleteByCni(@PathVariable String cni) {
         return beneficierService.deleteByCni(cni);
     }
-    @GetMapping("")
+    @GetMapping()
     public List<Beneficiaire> findAll() {
         return beneficierService.findAll();
     }
