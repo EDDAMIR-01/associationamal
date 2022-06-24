@@ -14,6 +14,10 @@ import java.util.List;
 public class BeneficierService {
 
     public int save(Beneficiaire beneficiaire) {
+        if (beneficiaire.getChambre() == null){
+            beneficiaireDao.save(beneficiaire);
+            return 1;
+        }else {
         Chambre chambre = chambreDao.findByRef(beneficiaire.getChambre().getRef());
         if (findByCni(beneficiaire.getCni()) != null) {
             return -1;
@@ -26,7 +30,7 @@ public class BeneficierService {
             beneficiaireDao.save(beneficiaire);
             return 1;
         }
-    }
+    }}
     public int create(Beneficiaire beneficiaire) {
         if (findByCni(beneficiaire.getCni()) != null) {
             return -1;
@@ -48,7 +52,11 @@ public class BeneficierService {
     public List<Beneficiaire> findAll() {
         return beneficiaireDao.findAll();
     }
-
+    public List<Beneficiaire> findAllWithoutChambre() {
+        List<Beneficiaire> bnf = beneficiaireDao.findAll();
+        bnf.removeIf(b -> b.getChambre() != null);
+        return bnf;
+    }
     @Transactional
     public int deleteByChambreRef(String ref) {
         return beneficiaireDao.deleteByChambreRef(ref);

@@ -31,7 +31,10 @@ public class ChambreProvided {
     public Chambre findByRef(@PathVariable String ref) {
         return chambreService.findByRef(ref);
     }
-
+    @PostMapping("disponible/{ref}")
+    public int modifier(@PathVariable String ref) {
+        return chambreService.modifier(ref);
+    }
     @DeleteMapping("ref/{ref}")
     public int deleteByRef(@PathVariable String ref) {
         return chambreService.deleteByRef(ref);
@@ -40,7 +43,10 @@ public class ChambreProvided {
     public List<Chambre> findAll() {
         return chambreService.findAll();
     }
-
+    @GetMapping("available/")
+    public List<Chambre> findAvailabble() {
+        return chambreService.findAvailabble();
+    }
     @Autowired
     private ChambreService chambreService;
     @Autowired

@@ -9,8 +9,13 @@ public class Demande {
     private Long id;
     private String ref;
     private boolean accepter;
+
+
+    @ManyToOne()
+    private Chambre chambre;
+
     @OneToOne()
-    private User user;
+    private Beneficiaire beneficiaire;
 
     public Long getId() {
         return id;
@@ -28,12 +33,20 @@ public class Demande {
         this.accepter = accepter;
     }
 
-    public User getUser() {
-        return user;
+    public Beneficiaire getBeneficiaire() {
+        return beneficiaire;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setBeneficiaire(Beneficiaire beneficiaire) {
+        this.beneficiaire = beneficiaire;
+    }
+
+    public Chambre getChambre() {
+        return chambre;
+    }
+
+    public void setChambre(Chambre chambre) {
+        this.chambre = chambre;
     }
 
     public String getRef() {

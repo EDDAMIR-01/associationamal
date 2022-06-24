@@ -1,7 +1,11 @@
 package com.example.associationamal.service;
 
+import com.example.associationamal.bean.Beneficiaire;
+import com.example.associationamal.bean.Chambre;
 import com.example.associationamal.bean.Demande;
 import com.example.associationamal.bean.User;
+import com.example.associationamal.dao.BeneficiaireDao;
+import com.example.associationamal.dao.ChambreDao;
 import com.example.associationamal.dao.DemandeDao;
 import com.example.associationamal.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +18,15 @@ import java.util.List;
 public class DemandeService {
 
     public int save(Demande demande){
-        User user = userDao.findByLoginAndPassword(demande.getUser().getLogin(),demande.getUser().getPassword());
+        Beneficiaire beneficiaire = beneficiaireDao.findByCni(demande.getBeneficiaire().getCni());
+        Chambre chambre = chambreDao.findByRef(demande.getChambre().getRef());
         if(findByRef(demande.getRef())!= null){
             return -1;
         }
-        else if(user == null){
-            return -2;
-        }
         else {
-            demande.setUser(user);
+            demande.setBeneficiaire(beneficiaire);
             demande.setAccepter(false);
+            demande.setChambre(chambre);
             demandeDao.save(demande);
             return 1;
         }
@@ -40,13 +43,12 @@ public class DemandeService {
     public List<Demande> findAll() {
         return demandeDao.findAll();
     }
-    @Transactional
-    public int deleteByUserLogin(String login) {
-        return demandeDao.deleteByUserLogin(login);
-    }
 
     @Autowired
     private DemandeDao demandeDao;
     @Autowired
-    private UserDao userDao;
+    private BeneficiaireDao beneficiaireDao;
+
+    @Autowired
+    private ChambreDao chambreDao;
 }

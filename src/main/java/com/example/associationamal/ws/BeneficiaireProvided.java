@@ -33,6 +33,11 @@ public class BeneficiaireProvided {
         return beneficierService.findAll();
     }
 
+    @GetMapping("withoutchambre/")
+    public List<Beneficiaire> findAllWithoutChambre() {
+        return beneficierService.findAllWithoutChambre();
+    }
+
     @Autowired
     private BeneficierService beneficierService;
 }

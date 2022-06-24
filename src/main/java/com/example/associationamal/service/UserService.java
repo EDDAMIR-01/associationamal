@@ -46,9 +46,7 @@ public class UserService {
 
     @Transactional
     public int deleteByLogin(String Login) {
-        int resultdemande = demandeService.deleteByUserLogin(Login);
-        int resultuser = userDao.deleteByLogin(Login);
-        return resultdemande + resultuser;
+        return userDao.deleteByLogin(Login);
     }
 
     public List<User> findAll() {

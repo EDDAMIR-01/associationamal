@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface DemandeDao extends JpaRepository<Demande,Long> {
     Demande findByRef(String ref);
     int deleteByRef(String ref);
-    int deleteByUserLogin(String login);
+
 }

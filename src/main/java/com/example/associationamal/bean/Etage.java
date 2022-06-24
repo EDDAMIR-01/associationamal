@@ -12,7 +12,7 @@ public class Etage {
     private Long id;
     private String ref;
     private int numero;
-    private String nbrchambre;
+    private int nbrchambre;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "etage")
@@ -42,11 +42,11 @@ public class Etage {
         this.numero = numero;
     }
 
-    public String getNbrchambre() {
+    public int getNbrchambre() {
         return nbrchambre;
     }
 
-    public void setNbrchambre(String nbrchambre) {
+    public void setNbrchambre(int nbrchambre) {
         this.nbrchambre = nbrchambre;
     }
 
